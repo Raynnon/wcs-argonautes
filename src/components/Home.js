@@ -1,6 +1,9 @@
 import "./home.css";
+import List from "./List";
 
 function Home() {
+  const crew = ["Arthemis", "Caesar", "Epiphosphène", "Jorge"];
+
   return (
     <div>
       {/* Header section */}
@@ -18,19 +21,14 @@ function Home() {
       <main>
         {/* New member form  */}
         <h2>Ajouter un(e) Argonaute</h2>
-        <form class="new-member-form">
-          <label for="name">Nom de l&apos;Argonaute</label>
+        <form className="new-member-form">
+          <label htmlFor="name">Nom de l&apos;Argonaute</label>
           <input id="name" name="name" type="text" placeholder="Charalampos" />
           <button type="submit">Envoyer</button>
         </form>
 
-        {/* Member list */}
         <h2>Membres de l'équipage</h2>
-        <section class="member-list">
-          <div class="member-item">Eleftheria</div>
-          <div class="member-item">Gennadios</div>
-          <div class="member-item">Lysimachos</div>
-        </section>
+        <List crew={crew} />
       </main>
 
       <footer>
