@@ -1,8 +1,12 @@
 function List({ crew }) {
   return (
     <section className="member-list">
-      {crew.map((member) => {
-        return <div className="member-item">{member}</div>;
+      {crew.map((member, index) => {
+        return (
+          <div key={index} className="member-item">
+            {member.name}
+          </div>
+        );
       })}
     </section>
   );
