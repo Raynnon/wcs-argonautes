@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const addCrew = require("./routes/addCrewMember");
 const readCrew = require("./routes/readCrewMember");
+require("./database/mongoose");
 
 const app = express();
 const port = 5000;
