@@ -4,9 +4,11 @@ import "./home.css";
 import List from "./List";
 
 function Home() {
-  const [name, setName] = useState([]);
+  const [name, setName] = useState("");
   const [crew, setCrew] = useState([]);
+  const [formInputError, setFormInputError] = useState(0);
 
+  /* Access to the database on first loading */
   useEffect(() => {
     axios.get("http://localhost:5000/crew").then((res) => {
       const crew = res.data;
@@ -14,18 +16,32 @@ function Home() {
     });
   }, []);
 
+  /* Changing name */
   const handleCrewNameChange = (e) => {
     setName(e.target.value);
   };
 
+  useEffect(() => {
+    if (name.length > 20 || name.match(/[0-9]/g)) {
+      setFormInputError(1);
+    } else {
+      setFormInputError(0);
+    }
+
+    console.log(name);
+  }, [name]);
+
+  /* Sending form */
   const addCrewMember = (e) => {
-    try {
-      e.preventDefault();
-      axios
-        .post("http://localhost:5000/addCrew", { member: name })
-        .then(setCrew((crew) => [...crew, { name: name }]));
-    } catch (e) {
-      console.log(e);
+    e.preventDefault();
+    if (!formInputError) {
+      try {
+        axios
+          .post("http://localhost:5000/addCrew", { member: name })
+          .then(setCrew((crew) => [...crew, { name: name }]));
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -55,7 +71,12 @@ function Home() {
             onChange={(e) => handleCrewNameChange(e)}
           />
           <button type="submit">Envoyer</button>
-          <p>Salut</p>
+          {formInputError ? (
+            <p style={{ color: "red" }}>
+              Le nom peut contenir 20 caractères maximum et ne peut pas contenir
+              de chiffres.
+            </p>
+          ) : null}
         </form>
 
         <h2>Membres de l'équipage</h2>
