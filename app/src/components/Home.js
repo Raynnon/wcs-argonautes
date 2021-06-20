@@ -6,7 +6,7 @@ import List from "./List";
 function Home() {
   const [name, setName] = useState("");
   const [crew, setCrew] = useState([]);
-  const [formInputError, setFormInputError] = useState(0);
+  const [formInputError, setFormInputError] = useState("");
 
   /* Access to the database on first loading */
   useEffect(() => {
@@ -22,10 +22,14 @@ function Home() {
   };
 
   useEffect(() => {
-    if (name.length > 20 || name.match(/[0-9]/g)) {
-      setFormInputError(1);
+    if (name.length < 2) {
+      setFormInputError("Le nom doit contenir au moins 2 caractères");
+    } else if (name.length > 20 || name.match(/[0-9]/g)) {
+      setFormInputError(
+        "Le nom peut contenir entre 2 et 20 caractères et ne peut pas contenir de chiffres."
+      );
     } else {
-      setFormInputError(0);
+      setFormInputError("");
     }
   }, [name]);
 
@@ -36,7 +40,8 @@ function Home() {
       try {
         axios
           .post("http://localhost:5000/addCrew", { member: name })
-          .then(setCrew((crew) => [...crew, { name: name }]));
+          .then(setCrew((crew) => [...crew, { name: name }]))
+          .then(setName(""));
       } catch (e) {
         console.log(e);
       }
@@ -65,16 +70,13 @@ function Home() {
             id="name"
             name="name"
             type="text"
+            value={name}
             placeholder="Nom de l'Argonaute"
             onChange={(e) => handleCrewNameChange(e)}
           />
           <button type="submit">Envoyer</button>
-          {formInputError ? (
-            <p style={{ color: "red" }}>
-              Le nom peut contenir 20 caractères maximum et ne peut pas contenir
-              de chiffres.
-            </p>
-          ) : null}
+
+          <p style={{ color: "red" }}>{formInputError}</p>
         </form>
 
         <h2>Membres de l'équipage</h2>
