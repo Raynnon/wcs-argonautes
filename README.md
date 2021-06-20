@@ -2,9 +2,12 @@
 
 ## Available Scripts
 
-There are 2 directories. You need to start both to be able to visualize the application.
+You need node to use this project: https://nodejs.org/en/
+There are 2 directories. You need to start both of them to be able to visualize the application.
 
 ### App directory for the front:
+
+#### `npm install`
 
 #### `npm start`
 
@@ -24,5 +27,7 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### Server directory for the API:
+
+#### `npm install`
 
 #### `npm start`

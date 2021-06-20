@@ -27,8 +27,6 @@ function Home() {
     } else {
       setFormInputError(0);
     }
-
-    console.log(name);
   }, [name]);
 
   /* Sending form */
