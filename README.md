@@ -2,7 +2,7 @@
 
 ## Available Scripts
 
-There are 2 directories.
+There are 2 directories. You need to start both to be able to visualize the application.
 
 ### App directory for the front:
 
@@ -26,5 +26,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### Server directory for the API:
 
 #### `npm start`
-
-Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
