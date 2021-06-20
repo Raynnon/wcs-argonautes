@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   position: relative;
   min-height: 100vh;
@@ -11,19 +12,57 @@ body {
 main {
   max-width: 960px;
   margin: 0 auto;
+  padding-bottom: 5rem;
 }
 
+h1,
+h2 {
+  font-family: "Cinzel", serif;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: white;
+}
+
+/* *Header */
 header {
-  background: #f4f4f4;
+  background: #f76c6c;
   padding: 2em;
 }
 
-header img {
-  max-width: 96px;
+#logo {
+  float: left;
+  height: 35px;
+}
+
+#title {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.boat {
+  display: inline;
+}
+
+@media (max-width: 714px) {
+  header img {
+    float: none;
+    height: 35px;
+    margin-bottom: 10px;
+  }
 }
 
 header h1 {
+  margin: 0 20px 0 20px;
   font-size: 2.5em;
+  color: white;
+  display: inline-block;
 }
 
 label {
@@ -31,8 +70,61 @@ label {
   margin-bottom: 0.5em;
 }
 
+/* *FORM */
+#name,
+button {
+  height: 50px;
+  border-radius: 7px;
+}
+/* INPUT */
+#name {
+  outline: none;
+  color: #676b6d;
+  background-color: #f6f8fa;
+  border: 2px solid #ced6da;
+  padding-left: 20px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  color: #ced6da;
+}
+
+#enroll {
+  margin-left: 10px;
+}
+
 .new-member-form {
-  margin: 2em 0 4em 0;
+  margin: 2em 0 3em 0;
+}
+
+/* Buttons */
+button {
+  color: white;
+  border: none;
+  background-color: #f76c6c;
+  width: 180px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #f65454;
+}
+
+.delete {
+  color: #f76c6c;
+  background-color: white;
+  border: 2px solid #f76c6c;
+}
+
+.delete:hover {
+  background-color: #f2f2f2;
+  color: #f65454;
+  border-color: #f65454;
 }
 
 .member-list {
@@ -45,6 +137,13 @@ label {
   padding: 0.25em 0;
 }
 
+.error-message {
+  color: #f76c6c;
+  min-height: 20px;
+  margin: 0;
+}
+
+/* *FOOTER */
 footer {
   position: absolute;
   bottom: 0;

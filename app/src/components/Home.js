@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./home.css";
 import List from "./List";
+import logo from "../images/logo-wild-code-school.png";
+import boatImage from "../images/boat.png";
 
 function Home() {
   const [name, setName] = useState("");
@@ -65,17 +67,16 @@ function Home() {
     <div>
       {/* Header section */}
       <header>
-        <h1>
-          <img
-            src="https://www.wildcodeschool.com/assets/logo_main-e4f3f744c8e717f1b7df3858dce55a86c63d4766d5d9a7f454250145f097c2fe.png"
-            alt="Wild Code School logo"
-          />
-          Les Argonautes
-        </h1>
+        <img id="logo" src={logo} alt="logo-wild-code-school" />
+        <div id="title">
+          <img className="boat" src={boatImage} alt="sailing-boat" />
+          <h1>Les Argonautes</h1>
+          <img className="boat" src={boatImage} alt="sailing-boat" />
+        </div>
       </header>
 
       {/* Main section */}
-      <main style={{ minHeight: "50%" }}>
+      <main>
         {/* New member form  */}
         <h2>Ajouter un(e) Argonaute</h2>
         <form className="new-member-form" onSubmit={(e) => addCrewMember(e)}>
@@ -87,15 +88,17 @@ function Home() {
             placeholder="Nom de l'Argonaute"
             onChange={(e) => handleCrewNameChange(e)}
           />
-          <button type="submit">Recruter</button>
+          <button id="enroll" type="submit">
+            Recruter
+          </button>
 
-          <p style={{ color: "red" }}>{formInputError}</p>
+          <p className="error-message">{formInputError}</p>
         </form>
 
         {crew.length ? (
           <div>
             <h2>Membres de l'équipage</h2>
-            <button type="submit" onClick={deleteCrew}>
+            <button className="delete" onClick={deleteCrew}>
               Renvoyer l'équipage
             </button>
           </div>
@@ -105,7 +108,10 @@ function Home() {
       </main>
 
       <footer>
-        <p>Réalisé par Jason en Anthestérion de l'an 515 avant JC</p>
+        <p>
+          Réalisé par <a href="https://www.florian-assante.com/">Raynnon</a> en
+          Anthestérion de l'an 515 avant JC
+        </p>
       </footer>
     </div>
   );
