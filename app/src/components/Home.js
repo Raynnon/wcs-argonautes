@@ -10,10 +10,14 @@ function Home() {
 
   /* Access to the database on first loading */
   useEffect(() => {
-    axios.get("http://localhost:5000/crew").then((res) => {
-      const crew = res.data;
-      setCrew(crew);
-    });
+    try {
+      axios.get("http://localhost:5000/crew").then((res) => {
+        const crew = res.data;
+        setCrew(crew);
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   /* Changing name */
@@ -48,6 +52,15 @@ function Home() {
     }
   };
 
+  /* Delete crew */
+  const deleteCrew = () => {
+    try {
+      axios.delete("http://localhost:5000/deleteCrew").then(setCrew([]));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div>
       {/* Header section */}
@@ -62,7 +75,7 @@ function Home() {
       </header>
 
       {/* Main section */}
-      <main>
+      <main style={{ minHeight: "50%" }}>
         {/* New member form  */}
         <h2>Ajouter un(e) Argonaute</h2>
         <form className="new-member-form" onSubmit={(e) => addCrewMember(e)}>
@@ -74,12 +87,20 @@ function Home() {
             placeholder="Nom de l'Argonaute"
             onChange={(e) => handleCrewNameChange(e)}
           />
-          <button type="submit">Envoyer</button>
+          <button type="submit">Recruter</button>
 
           <p style={{ color: "red" }}>{formInputError}</p>
         </form>
 
-        <h2>Membres de l'équipage</h2>
+        {crew.length ? (
+          <div>
+            <h2>Membres de l'équipage</h2>
+            <button type="submit" onClick={deleteCrew}>
+              Renvoyer l'équipage
+            </button>
+          </div>
+        ) : null}
+
         <List crew={crew} />
       </main>
 
