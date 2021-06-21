@@ -133,6 +133,12 @@ button:hover {
   grid-gap: 3em;
 }
 
+@media (max-width: 714px) {
+  .member-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .member-item {
   padding: 0.25em 0;
 }

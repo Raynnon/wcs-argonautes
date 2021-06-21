@@ -9,18 +9,19 @@ function Home() {
   const [name, setName] = useState("");
   const [crew, setCrew] = useState([]);
   const [formInputError, setFormInputError] = useState("");
+  const apiURL = process.env.REACT_APP_API_URL;
 
-  /* Access to the database on first loading */
+  /* Access to the database */
   useEffect(() => {
     try {
-      axios.get("http://localhost:5000/crew").then((res) => {
+      axios.get(`${apiURL}/crew`).then((res) => {
         const crew = res.data;
         setCrew(crew);
       });
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [apiURL]);
 
   /* Changing name */
   const handleCrewNameChange = (e) => {
@@ -45,7 +46,7 @@ function Home() {
     if (!formInputError) {
       try {
         axios
-          .post("http://localhost:5000/addCrew", { member: name })
+          .post(`${apiURL}/addCrew`, { member: name })
           .then(setCrew((crew) => [...crew, { name: name }]))
           .then(setName(""));
       } catch (e) {
@@ -57,7 +58,7 @@ function Home() {
   /* Delete crew */
   const deleteCrew = () => {
     try {
-      axios.delete("http://localhost:5000/deleteCrew").then(setCrew([]));
+      axios.delete(`${apiURL}/deleteCrew`).then(setCrew([]));
     } catch (e) {
       console.log(e);
     }

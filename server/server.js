@@ -4,9 +4,10 @@ const addCrewMember = require("./routes/addCrewMember");
 const readCrewMember = require("./routes/readCrewMember");
 const deleteCrew = require("./routes/deleteCrew");
 require("./database/mongoose");
+require("dotenv").config();
 
 const app = express();
-const port = 5000;
+const port = process.env.SERVER_PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

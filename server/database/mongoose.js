@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-const dbURL =
-  "mongodb+srv://raynnon:takemeinyourschool@cluster0.logd0.mongodb.net/test";
+const dbURL = process.env.MONGODB_PATH;
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
