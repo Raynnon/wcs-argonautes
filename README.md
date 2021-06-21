@@ -7,7 +7,7 @@ There are 2 directories. You need to start both of them to be able to visualize 
 
 ### App directory for the front:
 
-#### Create a .env in the root (You can use the .env.example to do it)
+#### Create a .env in the root (You can use the .env.example to help you)
 
 #### `npm install`
 
